@@ -1,0 +1,19 @@
+<tool id="plot_cellular_prevalence" name="Cluster Prevalence Over Samples" version="1.0">
+    <requirements>
+        <requirement type="package" version="1.2.5">pandas</requirement>
+        <requirement type="package" version="3.4.3">matplotlib</requirement>
+        <requirement type="package" version="0.11.2">seaborn</requirement>
+    </requirements>
+    <command>
+        export MPLCONFIGDIR=${__tool_directory__}/mpl_config; python ${__tool_directory__}/plot_clusters_prevalence.py "$input_file"
+    </command>
+    <inputs>
+        <param name="input_file" type="data" format="tabular" label="Input File"/>
+    </inputs>
+    <outputs>
+        <data format="png" name="output_file" from_work_dir="outfile.png" label="${tool.name} on ${input_file}"/>
+    </outputs>
+    <help>
+        This tool plots cluster prevalence over samples.
+    </help>
+</tool>
