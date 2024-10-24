@@ -5,16 +5,24 @@ ARG SERVER_DIR
 # switch to root
 USER root
 
-RUN apt-get -qq update
+RUN apt-get -qq update && \
+    apt-get install -y git
 
-
-# Copy pyclone_vi tool
-COPY tools/pyclone_vi /galaxy/server/tools/pyclone_vi
+# Clone Pyclone-VI tools from GitHUb
+RUN git clone https://github.com/jCHENEBY/galaxy-tool-pyclone-vi.git /galaxy/server/tools/pyclone_vi
 RUN chown -R galaxy:galaxy /galaxy/server/tools/pyclone_vi
 
-# Copy Cellular prevalence graph tool
-COPY tools/plot_clusters_prevalence /galaxy/server/tools/plot_clusters_prevalence
+# Clone Cellular prevalence graph tools from GitHub
+RUN git clone https://github.com/jCHENEBY/galaxy-tool-plot-cluster-prevalence.git /galaxy/server/tools/plot_clusters_prevalence
 RUN chown -R galaxy:galaxy /galaxy/server/tools/plot_clusters_prevalence
+
+## Copy pyclone_vi tool
+#COPY tools/pyclone_vi /galaxy/server/tools/pyclone_vi
+#RUN chown -R galaxy:galaxy /galaxy/server/tools/pyclone_vi
+#
+## Copy Cellular prevalence graph tool
+#COPY tools/plot_clusters_prevalence /galaxy/server/tools/plot_clusters_prevalence
+#RUN chown -R galaxy:galaxy /galaxy/server/tools/plot_clusters_prevalence
 
 COPY config/tool_conf.xml /galaxy/server/config/tool_conf.xml
 RUN chown galaxy:galaxy /galaxy/server/config/tool_conf.xml
