@@ -18,7 +18,7 @@
 
 2. Build the Docker image:
     ```sh
-    docker build -t docker-galaxy-pyclone .
+    docker build -t galaxy-pyclone .
     ```
 
 ## Usage
