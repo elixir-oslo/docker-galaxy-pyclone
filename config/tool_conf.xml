@@ -26,6 +26,7 @@
   <section id="send" name="Send Data">
     <tool file="data_export/send.xml" />
     <tool file="data_export/export_remote.xml" />
+    <tool file="export_cbioportal_timeline/export_cbioportal_timeline.xml" />
   </section>
   <section id="collection_operations" name="Collection Operations">
     <tool file="${model_tools_path}/unzip_collection.xml" />
