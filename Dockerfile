@@ -6,7 +6,7 @@ ARG SERVER_DIR
 USER root
 
 RUN apt-get -qq update && \
-    apt-get install -y git
+    apt-get install -y git pkg-config default-libmysqlclient-dev gcc
 
 # Clone Pyclone-VI tools from GitHUb
 RUN git clone https://github.com/jCHENEBY/galaxy-tool-pyclone-vi.git /galaxy/server/tools/pyclone_vi
@@ -15,6 +15,14 @@ RUN chown -R galaxy:galaxy /galaxy/server/tools/pyclone_vi
 # Clone Cellular prevalence graph tools from GitHub
 RUN git clone https://github.com/jCHENEBY/galaxy-tool-plot-cluster-prevalence.git /galaxy/server/tools/plot_clusters_prevalence
 RUN chown -R galaxy:galaxy /galaxy/server/tools/plot_clusters_prevalence
+
+# Clone Export timeline to cBioportal tools from GitHub
+#RUN git clone https://github.com/jCHENEBY/galaxy-tool-export-cbioportal-timeline.git
+COPY export_cbioportal_timeline /galaxy/server/tools/export_cbioportal_timeline/
+RUN chown -R galaxy:galaxy /galaxy/server/tools/export_cbioportal_timeline
+
+COPY cbioportal-core/scripts/importer /cbioportal-core/scripts/importer
+RUN chown -R galaxy:galaxy /cbioportal-core/scripts/importer
 
 ## Copy pyclone_vi tool
 #COPY tools/pyclone_vi /galaxy/server/tools/pyclone_vi
@@ -30,6 +38,10 @@ RUN chown galaxy:galaxy /galaxy/server/config/tool_conf.xml
 # Create database directory
 RUN mkdir /database
 RUN chown -R galaxy:galaxy /database
+
+# Create a shared study directory
+RUN mkdir /study
+RUN chown 777 /study
 
 # switch back to galaxy
 USER galaxy
@@ -47,6 +59,6 @@ RUN sed -i 's|^[[:space:]]*tool_dependency_dir:.*|#&|' config/galaxy.yml
 
 
 # Setup Py_clone
-RUN pip install pandas matplotlib seaborn numpy scipy galaxy-lib numba
+RUN pip install pandas matplotlib seaborn numpy scipy galaxy-lib numba dsnparse mysqlclient
 
 
