@@ -17,12 +17,9 @@ RUN git clone https://github.com/jCHENEBY/galaxy-tool-plot-cluster-prevalence.gi
 RUN chown -R galaxy:galaxy /galaxy/server/tools/plot_clusters_prevalence
 
 # Clone Export timeline to cBioportal tools from GitHub
-#RUN git clone https://github.com/jCHENEBY/galaxy-tool-export-cbioportal-timeline.git
-COPY export_cbioportal_timeline /galaxy/server/tools/export_cbioportal_timeline/
+RUN git clone --branch v1.0.0 https://github.com/jCHENEBY/galaxy-tool-export-cbioportal-timeline.git /galaxy/server/tools/export_cbioportal_timeline
+#COPY export_cbioportal_timeline /galaxy/server/tools/export_cbioportal_timeline/
 RUN chown -R galaxy:galaxy /galaxy/server/tools/export_cbioportal_timeline
-
-COPY cbioportal-core/scripts/importer /cbioportal-core/scripts/importer
-RUN chown -R galaxy:galaxy /cbioportal-core/scripts/importer
 
 ## Copy pyclone_vi tool
 #COPY tools/pyclone_vi /galaxy/server/tools/pyclone_vi
@@ -58,7 +55,7 @@ RUN sed -i 's|^[[:space:]]*tool_data_path:.*|#&|' config/galaxy.yml
 RUN sed -i 's|^[[:space:]]*tool_dependency_dir:.*|#&|' config/galaxy.yml
 
 
-# Setup Py_clone
+# Setup PyClone
 RUN pip install pandas matplotlib seaborn numpy scipy galaxy-lib numba dsnparse mysqlclient
 
 
