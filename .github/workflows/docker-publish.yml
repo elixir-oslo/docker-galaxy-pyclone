@@ -40,8 +40,8 @@ jobs:
         push: true
         platforms: linux/amd64
         tags: |
-          ghcr.io/${{ env.REPO_OWNER }}/docker-galaxy-pyclone:latest
-          ghcr.io/${{ env.REPO_OWNER }}/docker-galaxy-pyclone:${{ env.TAG_VERSION }}
+          ghcr.io/${{ env.REPO_OWNER }}/galaxy-pyclone:latest
+          ghcr.io/${{ env.REPO_OWNER }}/galaxy-pyclone:${{ env.TAG_VERSION }}
 
     - name: Log out from GitHub Container Registry
       run: docker logout ghcr.io
