@@ -14,12 +14,18 @@ RUN chown -R galaxy:galaxy /galaxy/server/tools/pyclone_vi
 
 # Clone Cellular prevalence graph tools from GitHub
 RUN git clone https://github.com/jCHENEBY/galaxy-tool-plot-cluster-prevalence.git /galaxy/server/tools/plot_clusters_prevalence
+#COPY plot_clusters_prevalence /galaxy/server/tools/plot_clusters_prevalence/
 RUN chown -R galaxy:galaxy /galaxy/server/tools/plot_clusters_prevalence
 
 # Clone Export timeline to cBioportal tools from GitHub
-RUN git clone --branch v1.0.0 https://github.com/jCHENEBY/galaxy-tool-export-cbioportal-timeline.git /galaxy/server/tools/export_cbioportal_timeline
+RUN git clone https://github.com/jCHENEBY/galaxy-tool-export-cbioportal-timeline.git /galaxy/server/tools/export_cbioportal_timeline
 #COPY export_cbioportal_timeline /galaxy/server/tools/export_cbioportal_timeline/
 RUN chown -R galaxy:galaxy /galaxy/server/tools/export_cbioportal_timeline
+
+# Clone Export image to cBioportal tools from GitHub
+RUN git clone https://github.com/jCHENEBY/galaxy-tool-export-cbioportal-image.git /galaxy/server/tools/export_cbioportal_image
+#COPY export_cbioportal_image /galaxy/server/tools/export_cbioportal_image/
+RUN chown -R galaxy:galaxy /galaxy/server/tools/export_cbioportal_image
 
 ## Copy pyclone_vi tool
 #COPY tools/pyclone_vi /galaxy/server/tools/pyclone_vi
@@ -56,6 +62,6 @@ RUN sed -i 's|^[[:space:]]*tool_dependency_dir:.*|#&|' config/galaxy.yml
 
 
 # Setup PyClone
-RUN pip install pandas matplotlib seaborn numpy scipy galaxy-lib numba dsnparse mysqlclient
+RUN pip install pandas matplotlib seaborn numpy scipy galaxy-lib numba dsnparse mysqlclient python-dotenv
 
 

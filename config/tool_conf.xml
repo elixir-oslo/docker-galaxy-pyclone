@@ -133,7 +133,8 @@
   </section>
   <section id="cbioportal" name="Export data to cBioPortal">
     <tool file="export_cbioportal_timeline/export_cbioportal_timeline.xml" />
-    </section>
+    <tool file="export_cbioportal_image/export_cbioportal_image.xml" />
+  </section>
   <!--
   <section id="interactivetools" name="Interactive tools">
     <tool file="interactive/interactivetool_askomics.xml" />
