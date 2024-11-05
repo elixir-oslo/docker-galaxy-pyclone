@@ -46,6 +46,11 @@ RUN chown -R galaxy:galaxy /database
 RUN mkdir /study
 RUN chown 777 /study
 
+# Import the entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN  chmod +x /entrypoint.sh
+RUN  chown galaxy:galaxy /entrypoint.sh
+
 # switch back to galaxy
 USER galaxy
 
@@ -63,5 +68,7 @@ RUN sed -i 's|^[[:space:]]*tool_dependency_dir:.*|#&|' config/galaxy.yml
 
 # Setup PyClone
 RUN pip install pandas matplotlib seaborn numpy scipy galaxy-lib numba dsnparse mysqlclient python-dotenv
+
+
 
 
