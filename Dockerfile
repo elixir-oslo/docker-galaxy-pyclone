@@ -6,14 +6,14 @@ ARG SERVER_DIR
 USER root
 
 RUN apt-get -qq update && \
-    apt-get install -y git pkg-config default-libmysqlclient-dev gcc
+    apt-get install -y git pkg-config default-libmysqlclient-dev gcc ca-certificates mercurial
 
 # Clone Pyclone-VI tools from GitHUb
 RUN git clone https://github.com/jCHENEBY/galaxy-tool-pyclone-vi.git /galaxy/server/tools/pyclone_vi
 RUN chown -R galaxy:galaxy /galaxy/server/tools/pyclone_vi
 
 # Clone Cellular prevalence graph tools from GitHub
-RUN git clone https://github.com/jCHENEBY/galaxy-tool-plot-cluster-prevalence.git /galaxy/server/tools/plot_clusters_prevalence
+RUN git clone --branch v1.2.3 https://github.com/jCHENEBY/galaxy-tool-plot-cluster-prevalence.git /galaxy/server/tools/plot_clusters_prevalence
 #COPY plot_clusters_prevalence /galaxy/server/tools/plot_clusters_prevalence/
 RUN chown -R galaxy:galaxy /galaxy/server/tools/plot_clusters_prevalence
 
@@ -26,6 +26,10 @@ RUN chown -R galaxy:galaxy /galaxy/server/tools/export_cbioportal_timeline
 RUN git clone https://github.com/jCHENEBY/galaxy-tool-export-cbioportal-image.git /galaxy/server/tools/export_cbioportal_image
 #COPY export_cbioportal_image /galaxy/server/tools/export_cbioportal_image/
 RUN chown -R galaxy:galaxy /galaxy/server/tools/export_cbioportal_image
+
+# Clone Query tabular fro IUC
+RUN hg clone https://toolshed.g2.bx.psu.edu/repos/iuc/query_tabular /galaxy/server/tools/query_tabular
+RUN chown -R galaxy:galaxy /galaxy/server/tools/query_tabular
 
 ## Copy pyclone_vi tool
 #COPY tools/pyclone_vi /galaxy/server/tools/pyclone_vi
