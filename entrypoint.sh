@@ -12,6 +12,11 @@ touch /galaxy/server/tools/export_cbioportal_timeline/.env
 
 echo "EXPORT_TIMELINE_ENDPOINT=${EXPORT_TIMELINE_ENDPOINT}" >> /galaxy/server/tools/export_cbioportal_timeline/.env
 
+# Create dummy config file if it does not exist
+if [ -f /galaxy/server/config/galaxy.yml ]; then
+  chown galaxy:galaxy /galaxy/server/config/galaxy.yml
+  chmod 644 /galaxy/server/config/galaxy.yml
+fi
 
 
 
