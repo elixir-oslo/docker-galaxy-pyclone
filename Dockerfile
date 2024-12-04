@@ -46,6 +46,10 @@ RUN chown galaxy:galaxy /galaxy/server/config/tool_conf.xml
 RUN mkdir /database
 RUN chown -R galaxy:galaxy /database
 
+# Create a shared config directory
+RUN mkdir /config
+RUN chown -R galaxy:galaxy /config
+
 # Create a shared study directory
 RUN mkdir /study
 RUN chown 777 /study
