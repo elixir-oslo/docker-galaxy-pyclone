@@ -28,3 +28,10 @@ galaxy:
     tool_sheds_config_file: /galaxy/server/config/tool_sheds_conf.xml.sample
     ucsc_build_sites: /galaxy/server/tool-data/shared/ucsc/ucsc_build_sites.txt.sample
     visualization_plugins_directory: config/plugins/visualizations
+    conda_auto_init: true
+    conda_auto_install: true
+    use_cached_dependency_manager: true
+    admin_users: ""
+    allow_user_creation: true
+    allow_user_deletion: true
+
