@@ -41,4 +41,18 @@ export PYLONE_DATA_PATH='/path/to/your/data'
 
 2. Access the Galaxy instance at `http://localhost:8081`.
 
+## Adding a tool
 
+Two files need to be modified to add a tool.
+1. config/tool_conf.xml
+Follow the official documentation to add your tool: https://docs.galaxyproject.org/en/master/admin/tool_panel.html
+2. Dockerfile
+If your tool is not part of Galaxy toolshed you need to add the wrapper and code to the Docker images.
+For example, with Pyclone-VI:
+```sh
+# Clone Pyclone-VI tools from GitHUb
+RUN git clone https://github.com/jCHENEBY/galaxy-tool-pyclone-vi.git /galaxy/server/tools/pyclone_vi
+RUN chown -R galaxy:galaxy /galaxy/server/tools/pyclone_vi
+```
+
+This Docker image uses conda to install requirements from the tool XML file, so you don't need to modify the Dockerfile further.
