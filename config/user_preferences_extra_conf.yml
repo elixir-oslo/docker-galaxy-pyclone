@@ -1,0 +1,16 @@
+preferences:
+  xnat_account:
+    description: Your XNAT account
+    inputs:
+      - name: server
+        label: XNAT host
+        type: text
+        required: False
+      - name: username
+        label: Username
+        type: text
+        required: False
+      - name: Password
+        label: password
+        type: password
+        required: False
