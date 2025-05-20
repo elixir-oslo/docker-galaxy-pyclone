@@ -46,6 +46,8 @@ RUN chown -R galaxy:galaxy /galaxy/server/tools/query_tabular
 RUN git clone https://github.com/jCHENEBY/galaxy-tool-eosc4canccer-2.2.git /galaxy/server/tools/ct_scan
 RUN chown -R galaxy:galaxy /galaxy/server/tools/ct_scan
 
+RUN git clone --branch develop https://gitlab.com/radiology/infrastructure/resources/galaxy_xnat_tool.git /galaxy/server/tools/xnat
+RUN chown -R galaxy:galaxy /galaxy/server/tools/xnat
 
 ## Copy pyclone_vi tool
 #COPY tools/pyclone_vi /galaxy/server/tools/pyclone_vi
@@ -60,6 +62,9 @@ RUN chown galaxy:galaxy /galaxy/server/config/tool_conf.xml
 
 COPY config/galaxy.yml /galaxy/server/config/galaxy.yml
 RUN chown galaxy:galaxy /galaxy/server/config/galaxy.yml
+
+COPY config/user_preferences_extra_conf.yml /galaxy/server/config/user_preferences_extra_conf.yml
+RUN chown galaxy:galaxy /galaxy/server/config/user_preferences_extra_conf.yml
 
 # Create database directory
 RUN mkdir /database
