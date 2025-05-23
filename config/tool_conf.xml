@@ -135,6 +135,8 @@
   <section id="medicalImage" name="Medical Image">
     <tool file="ct_scan/snr.xml" />
     <tool file="ct_scan/convolution_2d.xml" />
+    <tool file="xnat/xnat_download.xml" />
+    <tool file="xnat/xnat_upload.xml" />
   </section>
   <section id="cbioportal" name="Export data to cBioPortal">
     <tool file="export_cbioportal_timeline/export_cbioportal_timeline.xml" />
