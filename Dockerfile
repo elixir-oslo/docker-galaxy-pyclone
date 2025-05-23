@@ -36,7 +36,11 @@ RUN git clone https://github.com/elixir-oslo/galaxy-tool-eosc4canccer-2.2.git /g
 # COPY galaxy-tool-eosc4canccer-2.2 /galaxy/server/tools/ct_scan
 RUN chown -R galaxy:galaxy /galaxy/server/tools/ct_scan
 
-RUN git clone --branch develop https://gitlab.com/radiology/infrastructure/resources/galaxy_xnat_tool.git /galaxy/server/tools/xnat
+# Clone XNAT tools from GitLab at the develop branch and commit 9337b9bb3f1e37e81b2698dbcf82aa07c5d6ba96
+RUN git clone --branch develop https://gitlab.com/radiology/infrastructure/resources/galaxy_xnat_tool.git /galaxy/server/tools/xnat && \
+    cd /galaxy/server/tools/xnat && \
+    git checkout 9337b9bb3f1e37e81b2698dbcf82aa07c5d6ba96
+    
 # COPY galaxy_xnat_tool /galaxy/server/tools/xnat
 RUN chown -R galaxy:galaxy /galaxy/server/tools/xnat
 
