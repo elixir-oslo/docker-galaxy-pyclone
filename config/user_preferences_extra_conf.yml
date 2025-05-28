@@ -10,7 +10,7 @@ preferences:
         label: Username
         type: text
         required: False
-      - name: Password
-        label: password
+      - name: password
+        label: Password
         type: password
         required: False
