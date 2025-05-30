@@ -38,7 +38,6 @@ RUN chown -R galaxy:galaxy /galaxy/server/tools/ct_scan
 
 # Clone XNAT tools from GitLab at the develop branch and commit 9337b9bb3f1e37e81b2698dbcf82aa07c5d6ba96
 RUN git clone --branch develop https://gitlab.com/radiology/infrastructure/resources/galaxy_xnat_tool.git /galaxy/server/tools/xnat
-    
 # COPY galaxy_xnat_tool /galaxy/server/tools/xnat
 RUN chown -R galaxy:galaxy /galaxy/server/tools/xnat
 
@@ -103,7 +102,7 @@ RUN rm /galaxy/miniconda3/miniconda.sh
 
 
 # Setup PyClone
-RUN pip install pandas matplotlib seaborn numpy scipy galaxy-lib numba dsnparse mysqlclient python-dotenv
+# RUN pip install pandas matplotlib seaborn numpy scipy galaxy-lib numba dsnparse mysqlclient python-dotenv
 
 
 
